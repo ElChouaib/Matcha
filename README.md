@@ -1,5 +1,5 @@
 
-                         **WELCOME TO OUR LOCAL VERSION OF TINDER**
+                         *WELCOME TO OUR LOCAL VERSION OF TINDER*
 
 > # Matcha
 Web Application for Matching Accounts and Dating.- 1337 school (42 network) project.
