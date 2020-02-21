@@ -32,4 +32,4 @@ Two matched users can chat with each other.
 
 Created By : 
 - * ELMAKHLOUK Chouaib 
-- * Moad Goulmane
+- * GOULMANE Mouad
