@@ -17,6 +17,9 @@ import clsx from 'clsx';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import LinkedCameraIcon from '@material-ui/icons/LinkedCamera';
 import PlaceIcon from '@material-ui/icons/Place';
+import { Redirect } from 'react-router';
+
+
 
 const QontoConnector = withStyles({
   alternativeLabel: {
@@ -202,14 +205,7 @@ const Checkout = (props) => {
           </Stepper>      
           <React.Fragment>
             {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Success
-                </Typography>
-                <Typography variant="subtitle1">
-                  You completed your profile successfully.
-                </Typography>
-              </React.Fragment>
+              <Redirect push to="/browse"/>
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}

@@ -2,6 +2,8 @@ import React from 'react';
 import Picture from '../../components/completeProfile/pictures';
 import {connect} from "react-redux";
 import {sendImages,delImages,setProfilePic} from '../../actions/imagesAction';
+
+
 const Pictures = (props) => {
 const { user,images,sendImages,delImages,setProfilePic} = props;
 

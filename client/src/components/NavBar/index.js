@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    color: 'white',
+
   },
   drawerHeader: {
     display: 'flex',
@@ -70,6 +70,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
+    
   },
   title : {
     flexGrow: 1,

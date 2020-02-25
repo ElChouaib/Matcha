@@ -189,7 +189,7 @@ export default function TitlebarGridList(props) {
           </Grid>
         </CardContent>
         <CardActions>
-        <Button type="submit" onClick={handleSubmit} color="primary" className={classes.submit} fullWidth variant="contained" >Send</Button>
+        <Button type="submit" onClick={handleSubmit} color="primary" className={classes.submit} fullWidth variant="contained" >FILTER</Button>
         </CardActions>
       </Card>
     <div className={classes.root}>

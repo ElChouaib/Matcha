@@ -60,15 +60,13 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
 const AddInfo = (props) => {
   const classes = useStyles();
   const {handleSubmit, selectLoading, selectOptions, selectError, createOption} = props;
-  const [state, setstate] = useState({male: false, female: false});
 
   const handleCreate =  (value) => {
     createOption(value);
+    
   }
 
-  // const handlechange = (value) => {
-  //   setstate({male: !state.male, female: !state.male});
-  // }
+ 
 
   const selectField = ({ input, meta: { touched, error }}) => (
     <div>
@@ -108,7 +106,7 @@ const AddInfo = (props) => {
               />
             </Grid>
             <Grid item xs={12}>
-            <FormLabel component="legend">Match with</FormLabel>
+            <FormLabel component="legend">Interested To</FormLabel>
               <Field component={RadioGroup} name="sexOrient" required={true} options={[
                     { title:  'Men ' , value: 'men'  },
                     { title:  'Women', value: 'women'},
