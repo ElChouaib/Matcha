@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import Grid from '@material-ui/core/Grid';
@@ -11,10 +11,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Select from 'react-select';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import StarIcon from '@material-ui/icons/Star';
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +40,20 @@ const useStyles = makeStyles(theme => ({
     border: '2px solid',
     borderColor: '#E6EAEA',
   },
-  
+  menu:{
+    height: 100,
+    width: 500,
+    paddingTop: 30,
+    paddingBottom: -60,
+    borderRadius: 15,
+  },
+  spacing:{
+    margin: theme.spacing(1),
+    align: 'center',
+  },
+  search:{
+    margin: theme.spacing(5),
+  },
 }));
 
 export default function TitlebarGridList(props) {
@@ -77,6 +91,34 @@ export default function TitlebarGridList(props) {
       }),
   };
 
+  const [anchorRate, setAnchorRate] = useState(null);
+  const [anchorAge, setAnchorAge] = useState(null);
+  const [anchorLocation, setAnchorLocation] = useState(null);
+  const [anchorTags, setAnchorTags] = useState(null);
+
+  const handleRate = event => {
+    setAnchorRate(event.currentTarget);
+  };
+
+  const handleLocation = event => {
+    setAnchorLocation(event.currentTarget);
+  };
+
+  const handleAge = event => {
+    setAnchorAge(event.currentTarget);
+  };
+
+  const handleTags = event => {
+    setAnchorTags(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorRate(null);
+    setAnchorAge(null);
+    setAnchorLocation(null);
+    setAnchorTags(null);
+  };
+
     return (
       <>
       <Card className={classes.card}>
@@ -85,92 +127,86 @@ export default function TitlebarGridList(props) {
           <Grid container item justify="center" spacing={2} xs={12}>
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-rating")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("rating")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider1" gutterBottom align="center">
-                Rating
-              </Typography>
-              <Slider
-                value={rating}
-                onChange={handleChangeRating}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={0.2}
-                marks={marks}
-                min={0}
-                max={5}
-              /> 
-            </Grid>
-
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-age")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("age")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider2" gutterBottom align="center">
-                Age
-              </Typography>
-              <Slider
-                value={age}
-                onChange={handleChangeAge}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={1}
-                min={18}
-                max={120}
-              />
-            </Grid>
-
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-distance")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("distance")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider3" gutterBottom align="center">
-                Localisation
-              </Typography>
-              <Slider
-                value={loc}
-                onChange={handleChangeLoc}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={1000}
-                min={0}
-                max={50000}
-              /> 
-            </Grid>
-
-            <Grid item xs={6} className={classes.rating}>
-              <div className={classes.margin} />
-              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-nbrTags")}>
-                <KeyboardArrowDownIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("nbrTags")}>
-                <ExpandLessIcon  color="primary"/>
-              </IconButton></Tooltip>
-              <Typography id="range-slider4" gutterBottom align="center">
-                Common tags
-              </Typography>
-              <Slider
-                value={nbrTags}
-                onChange={handleChangeNbrTags}
-                valueLabelDisplay="auto"
-                aria-labelledby="range-slider"
-                step={1}
-                marks={marksTags}
-                min={0}
-                max={5}
-              /> 
+              <Button  className={classes.spacing} onClick={handleRate} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Rating</Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorRate}
+                  keepMounted
+                  open={Boolean(anchorRate)}
+                  onClose={handleClose}                  
+                >
+                  <MenuItem className={classes.menu}>
+                    <Slider
+                      value={rating}
+                      onChange={handleChangeRating}
+                      valueLabelDisplay="auto"
+                      aria-labelledby="range-slider"
+                      step={0.2}
+                      marks={marks}
+                      min={0}
+                      max={5}/>
+                  </MenuItem>
+                </Menu>
+                <Button className={classes.spacing}  onClick={handleAge} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Age</Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorAge}
+                  keepMounted
+                  open={Boolean(anchorAge)}
+                  onClose={handleClose}
+                >
+                  <MenuItem className={classes.menu}>
+                    <Slider
+                      value={age}
+                      onChange={handleChangeAge}
+                      valueLabelDisplay="auto"
+                      aria-labelledby="range-slider"
+                      step={1}
+                      min={18}
+                      max={120}/>
+                  </MenuItem>
+                </Menu>
+                <Button className={classes.spacing}  onClick={handleLocation} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Location</Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorLocation}
+                  keepMounted
+                  open={Boolean(anchorLocation)}
+                  onClose={handleClose}
+                >
+                  <MenuItem className={classes.menu}>
+                    <Slider
+                      value={loc}
+                      onChange={handleChangeLoc}
+                      valueLabelDisplay="auto"
+                      aria-labelledby="range-slider"
+                      step={1000}
+                      min={0}
+                      max={50000}>
+                    </Slider>
+                  </MenuItem>
+                </Menu>
+                <Button className={classes.spacing}  onClick={handleTags} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Tags</Button>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorTags}
+                  keepMounted
+                  open={Boolean(anchorTags)}
+                  onClose={handleClose}
+                >
+                  <MenuItem className={classes.menu}>
+                    <Slider
+                      value={nbrTags}
+                      onChange={handleChangeNbrTags}
+                      valueLabelDisplay="auto"
+                      aria-labelledby="range-slider"
+                      step={1}
+                      marks={marksTags}
+                      min={0}
+                      max={5}>
+                    </Slider>
+                  </MenuItem>
+                </Menu>
             </Grid>
 
             <Grid item xs={6} className={classes.rating}>
@@ -184,6 +220,7 @@ export default function TitlebarGridList(props) {
                   onChange={handleChangeTags}
                   options={selectOptions}
                   styles={customStyles}
+                  className={classes.search}
               />
             </Grid>
           </Grid>
