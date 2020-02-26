@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight : 50,
   },
   avatarON: {
-    backgroundColor: '#00FB0C',
+    backgroundColor: 'rgb(66, 183, 42)',
     width: 15,
     height: 15,
   },
@@ -61,7 +61,6 @@ export default function ViewProfile(props) {
   const {user,images,interests,handleBlock,handleLike,handleDislike,handleViewProfile} = props;
   const classes = useStyles();
   const value = user.rating;
-
   return (
     <div className={classes.root}>
     <Card className={classes.card}>

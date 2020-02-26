@@ -4,7 +4,6 @@ import GridList from '@material-ui/core/GridList';
 import Grid from '@material-ui/core/Grid';
 import ViewProfile from './viewProfile';
 import Slider from '@material-ui/core/Slider';
-import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,7 +12,10 @@ import Button from '@material-ui/core/Button';
 import Select from 'react-select';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import StarIcon from '@material-ui/icons/Star';
+import Fab from '@material-ui/core/Fab';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import FilterListIcon from '@material-ui/icons/FilterList';
+
 
 
 
@@ -54,6 +56,12 @@ const useStyles = makeStyles(theme => ({
   search:{
     margin: theme.spacing(5),
   },
+  upBtn: {
+    position: 'fixed',
+    bottom: 90,
+    right: 10,
+    zIndex: 99,
+}
 }));
 
 export default function TitlebarGridList(props) {
@@ -95,6 +103,9 @@ export default function TitlebarGridList(props) {
   const [anchorAge, setAnchorAge] = useState(null);
   const [anchorLocation, setAnchorLocation] = useState(null);
   const [anchorTags, setAnchorTags] = useState(null);
+  const [scroll, setscroll] = useState(false);
+
+  
 
   const handleRate = event => {
     setAnchorRate(event.currentTarget);
@@ -181,7 +192,7 @@ export default function TitlebarGridList(props) {
                       valueLabelDisplay="auto"
                       aria-labelledby="range-slider"
                       step={1000}
-                      min={0}
+                      
                       max={50000}>
                     </Slider>
                   </MenuItem>
@@ -211,9 +222,7 @@ export default function TitlebarGridList(props) {
 
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <Typography id="range-slider5" gutterBottom align="center">
-                Tags
-              </Typography>
+              
               <Select
                   isMulti
                   isClearable={false}
@@ -221,23 +230,34 @@ export default function TitlebarGridList(props) {
                   options={selectOptions}
                   styles={customStyles}
                   className={classes.search}
+                  align="center"
               />
             </Grid>
           </Grid>
         </CardContent>
         <CardActions>
-        <Button type="submit" onClick={handleSubmit} color="primary" className={classes.submit} fullWidth variant="contained" >FILTER</Button>
+        <Button type="submit" onClick={handleSubmit} color="primary" className={classes.submit} fullWidth variant="contained" ><FilterListIcon/>FILTER</Button>
         </CardActions>
       </Card>
     <div className={classes.root}>
+    
           {users.isUsers === true && users.users && users.users.map(tile => (
+            
             <GridList key={tile.user.id}>
               <ViewProfile key={tile.user.id}  user={tile.user} images={tile.images} interests={tile.interests}
               handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile} handleDislike={handleDislike}/>
             </GridList>
           ))}
-          
+          <Fab    className={classes.upBtn}
+                        color="primary"
+                        size="medium"
+                        onClick={() => {document.documentElement.scrollTop = 0}}
+                >
+                    <KeyboardArrowUpIcon />
+                </Fab>
+
           {(users.isUsers === false || users.users === null || users.length === 0 )&& <p>No User Found</p>}
+          
       </div>
     </>
     );

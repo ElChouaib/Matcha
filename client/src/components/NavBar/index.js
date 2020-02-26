@@ -26,7 +26,9 @@ import AppsIcon from '@material-ui/icons/Apps';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
-import { Hidden } from '@material-ui/core';
+import { Hidden, Grid } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -78,6 +80,11 @@ const useStyles = makeStyles(theme => ({
   notif: {
     margin: 'auto'
   },
+  large: {
+    width: 75,
+    height: 75,
+    margin: 10
+  },
  
 }));
 
@@ -98,6 +105,7 @@ function NavBar(props) {
     {"text" : "Se connecter","path" : "/login", icon: <LockOpenIcon color="secondary"/>},
     {"text" : "inscription","path" : "/register", icon: <LockOpenIcon color="secondary"/>},
   ];
+
   let menu = [];
   if(user && user.token)
   {
@@ -123,6 +131,7 @@ function NavBar(props) {
   const handleClickAway = () => {
     setOpen(false);
   };
+  
 
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
@@ -166,7 +175,8 @@ function NavBar(props) {
               </Badge>
             </IconButton>}
           
-          {user && user.token && <Button  onClick={handleLogout}>Logout</Button>}
+          {user && user.token 
+          && <Button  onClick={handleLogout}>Logout</Button>}
         </Toolbar>
       </AppBar>
       
@@ -180,9 +190,14 @@ function NavBar(props) {
         }}
       >
         <div className={classes.drawerHeader}>
+          
+        {user && <Grid> <Avatar className={classes.large} alt='Avatar' src={`http://localhost:5000/images/${user.profilePic}`}/>
+               <Button href="/profile">{user.username}</Button> </Grid>}
+
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon color="primary"/> : <ChevronRightIcon />}
           </IconButton>
+          
         </div>
         <Divider />
         <List>

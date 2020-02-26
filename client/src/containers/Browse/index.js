@@ -10,13 +10,14 @@ import ViewPro from "../../components/Browse/vP";
 const HomeContainer = (props) => {
     const {getOptions, selectOptions,getUsers,blockUser,likeUser,dislikeUser,reportUser,users,viewProfileUser,router,resetStateUsers,sortUsers} = props
     const [sort, setSort] = useState(false);
+    const [scroll, setScroll] = useState(0);
     const [suggestion, setSuggestion] = useState(true);
     const [methode, setMethode] = useState(null);
     const route = router.location.pathname;
     const [indice,setIndice] = useState(0);
     const [rating, setValueRating] = useState([0,0]);
     const [age, setValueAge] = useState([18,18]);
-    const [loc, setValueLoc] = useState([0,0]);
+    const [loc, setValueLoc] = useState([0]);
     const [nbrTags, setValueNbrTags] = useState([0,0]);
     const [tags, setValuetags] = useState(null);
     const [state, setState] = useState({
@@ -41,7 +42,7 @@ const HomeContainer = (props) => {
         getOptions();
         setValueRating([0,0]);
         setValueAge([18,18])
-        setValueLoc([0,0])
+        setValueLoc([0])
         setValueNbrTags([0,0])
         setValuetags(null)
         setIndice(0);
@@ -71,10 +72,12 @@ const HomeContainer = (props) => {
     const handleChangeTags = (newValue) => {
         setValuetags(newValue);
         return newValue;
-    };   
+    }; 
+    
+   
+
     window.onscroll = function(ev) {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            
             if(sort === true)
                 sortUsers(methode,route,indice+1);
             else if(suggestion === true)
@@ -84,7 +87,7 @@ const HomeContainer = (props) => {
     };
     const handleSubmit = () => {
         if(arrayTags.length === 0 && nbrTags[0] === 0 && nbrTags[1] === 0 && rating[0] === 0 
-            && rating[1] === 0 && loc[0] === 0 && loc[1] === 0 && age[0] === 18  && age[1] === 18 && route === '/search')
+            && rating[1] === 0 && loc === 0  && age[0] === 18  && age[1] === 18 && route === '/search')
             {
                 resetStateUsers();
                 return ;

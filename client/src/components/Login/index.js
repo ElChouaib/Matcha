@@ -40,6 +40,11 @@ const useStyles = makeStyles(theme => ({
 const Login = (props) => {
   const {handleSubmit, status, errors, registredStatus} = props;
   const classes = useStyles();
+
+  const handleAuth = async () => {
+    window.open("http://localhost:5000/auth/42");
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -89,6 +94,8 @@ const Login = (props) => {
                   Don't have an account? Sign Up
               </Link>
             </Grid>
+            <Button onClick={handleAuth}>42</Button>
+
           </Grid>
       </div>
     </Container>
