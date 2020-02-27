@@ -36,6 +36,28 @@ Two matched users can chat with each other.
 - Material-ui
 
 <hr>
+
+> # How to run it ?
+You must have phpmyadmin launched 
+
+    cd client && npm install
+
+    cd server && npm install
+
+    cd server/config && and sh index.sh //to launch db migration
+
+    cd server && npm run dev
+
+    cd client && serve -s build -l [PORT]
+<hr>
+
+> # You Don't have npm ?
+
+    brew install npm
+
+
+
+<hr>
 <hr>
 
 Created By : 
