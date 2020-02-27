@@ -9,12 +9,13 @@ import ForgotPasswordContainer from '../containers/sendEmail';
 import EmailConfirmCont from '../containers/emailConfirmation';
 import ResetPasswordContainer from '../containers/resetPassword';
 import CompleteProfile from '../containers/completeProfile/stepper';
+import OmniAuth from '../containers/OmniAuth';
 import Profile from '../containers/Profile';
 import Activity from '../containers/Activity';
 import Chat from '../containers/Chat';
 import Notif from '../containers/Notif';
 import MyFlash from '../components/commun/flash';
-
+ 
 const Routes = (props) => {
     const {user, notif} = props;
     return (
@@ -22,6 +23,7 @@ const Routes = (props) => {
             {notif && <MyFlash variant="info" msg={[notif]}/>}
             <Switch>
                 <Route exact path="/confirmation/:token"  component={user === null ? EmailConfirmCont : (user.complete === 3 ? Profile : CompleteProfile)}/>
+                <Route exact path="/OmniAuth/:token"  component={user === null ? OmniAuth : (user.complete === 3 ? Profile : CompleteProfile)}/>
                 <Route exact path="/resetPassword/:token"  component={user === null ? ResetPasswordContainer  : (user.complete === 3 ? Profile : CompleteProfile)}/>
                 <Route exact path="/forgotPassword"  component={user === null ? ForgotPasswordContainer  : (user.complete === 3 ? Profile : CompleteProfile)}/>
                 <Route exact path="/register"  component={user === null ? RegisterContainer  : (user.complete === 3 ? Profile : CompleteProfile)} />
