@@ -7,8 +7,8 @@ const UPDATE = queries.UPDATE;
 const DELETE = queries.DELETE;
 
 module.exports = {
-    Register :function  (lastname, firstname, username, email, password) {
-        conn.query(INSERT.AddUser, [lastname, firstname, username, email, password],(err,res) => {
+    Register :function  (lastname, firstname, username, email, password,omni_id) {
+        conn.query(INSERT.AddUser, [lastname, firstname, username, email, password,omni_id],(err,res) => {
             if(err)
             {
                 throw err;

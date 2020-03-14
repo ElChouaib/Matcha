@@ -13,6 +13,7 @@ import Profile from '../containers/Profile';
 import Activity from '../containers/Activity';
 import Chat from '../containers/Chat';
 import Notif from '../containers/Notif';
+import omniAuth from '../containers/Login/omniAuth';
 import MyFlash from '../components/commun/flash';
 
 const Routes = (props) => {
@@ -26,6 +27,7 @@ const Routes = (props) => {
                 <Route exact path="/forgotPassword"  component={user === null ? ForgotPasswordContainer  : (user.complete === 3 ? Profile : CompleteProfile)}/>
                 <Route exact path="/register"  component={user === null ? RegisterContainer  : (user.complete === 3 ? Profile : CompleteProfile)} />
                 <Route exact path="/login"  component={user === null ? loginContainer  : (user.complete === 3 ? Profile : CompleteProfile)}/>
+                <Route path="/omniAuth/:token" component={omniAuth} />
                 <Route exact path="/" component={user !== null  ? (user.complete === 3 ? Profile : CompleteProfile) : loginContainer }/>
                 <Route exact path="/profile" component={user !== null  ? (user.complete === 3 ? Profile : CompleteProfile) : loginContainer }/>
                 <Route exact path="/activity" component={user !== null  ? (user.complete === 3 ? Activity : CompleteProfile) : loginContainer }/> 

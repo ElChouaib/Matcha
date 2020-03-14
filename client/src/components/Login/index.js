@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import MyFlash from '../commun/flash'
 import renderField from '../commun/TextField'
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   
@@ -35,12 +36,30 @@ const useStyles = makeStyles(theme => ({
   lock: {
     backgroundImage: 'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)',
   },
+  img:{
+    width: 50,
+    height: 50,
+  },
+  divider:{
+    width: 700,
+  },
+  button:{
+    marginRight: 70,
+  },
+  button2:{
+    marginLeft: 178,
+  }
 }));
 
 const Login = (props) => {
   const {handleSubmit, status, errors, registredStatus} = props;
   const classes = useStyles();
-
+  const handleAuth4 = async () => {
+    window.open("http://localhost:5000/auth/google",'_parent');
+  }
+  const handleAuth5 = async () => {
+    window.open("http://localhost:5000/auth/42",'_parent');
+  }
   
 
   return (
@@ -92,7 +111,12 @@ const Login = (props) => {
                   Don't have an account? Sign Up
               </Link>
             </Grid>
-
+            <div className={classes.divider}>
+            <Divider />
+            <Button className={classes.button} onClick={handleAuth4}><img className={classes.img} alt="" src='https://cdn2.iconfinder.com/data/icons/font-awesome/1792/google-512.png'/></Button>
+            <Button  className={classes.button2} onClick={handleAuth5}><img className={classes.img} alt="" src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/42_Logo.svg/1200px-42_Logo.svg.png'/></Button>
+            </div>
+           
           </Grid>
       </div>
     </Container>

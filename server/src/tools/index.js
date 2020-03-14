@@ -23,11 +23,13 @@ const isBio = require("./user/isBio")
 const isInterest = require("./user/isInterest")
 const isLatitude = require("./user/isLatitude")
 const isLongitude = require("./user/isLongitude")
+const generate = require("./user/PasswordGenerator")
+const download = require("./image/downloadImage")
 
 module.exports = {
     isEmpty, isDigit, isLowercase, isUppercase, isSpecial,
     isAlpha, isAlphaNumeric, isNumeric, isFloat, isUsername,
     isEmail, isBirthday, isFirstname, isLastname, isPassword,
     isProfileComplete, isGender, isOrient, isBio, isInterest,
-     isLatitude, isLongitude, age,isCorrupt
+     isLatitude, isLongitude, age,isCorrupt,generate, download
 };

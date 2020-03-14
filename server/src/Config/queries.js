@@ -18,6 +18,8 @@ const queries = {
         GetUserByUsername:  "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate FROM users \
                             WHERE users.username = ?",
         GetUserByToken:     "SELECT * FROM users WHERE verif_token = ?",
+        GetUserByOmni:      "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate FROM users \
+                            WHERE users.omni_id = ?",
         GetImages :         "SELECT * FROM images WHERE user_id = ?",
         GetProfilePic :     "SELECT path FROM images WHERE user_id = ? AND isProfilePic = 1",
         GetInterests:       "SELECT interest FROM interests",
@@ -50,7 +52,7 @@ const queries = {
     },
     INSERT : {
         AddImage:           'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?, ?)',
-        AddUser:            'INSERT INTO users (lastname, firstname, username, email, password) VALUES (?, ?, ?, ?, ?)',
+        AddUser:            'INSERT INTO users (lastname, firstname, username, email, password,omni_id) VALUES (?, ?, ?, ?, ?,?)',
         CreateInterest:     "INSERT INTO interests (interest, createdBy) VALUES (?, ?)",
         InsertUserInter:    "INSERT INTO usersInterests (uId, iId) VALUES (?, ?)",
         blockUser :         "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",

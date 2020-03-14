@@ -3,6 +3,8 @@ const logger = require('morgan');
 const bodyparser = require('body-parser');
 const OffSession = require('./routes/OffSession');
 const OnSession = require('./routes/OnSession');
+const authRoutes = require('./routes/auth-routes');
+const passport = require("passport");
 const cors = require('cors')
 const up = require('../src/controllers/uploadFile')
 const app = express();
@@ -20,6 +22,9 @@ app.use(cors());
 
 // ------------- Routes  ------------- //
 app.use(OffSession);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(authRoutes);
 app.use(up)
 app.use(OnSession);
 // ------------- ERR  ------------- //
