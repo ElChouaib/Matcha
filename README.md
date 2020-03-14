@@ -57,15 +57,35 @@ You must have phpmyadmin launched
     
 > # Screenshots
 
+ - * Login 
+ 
 ![login](server/public/images/login.png)
+ - * Adding informations related to the profile 
+ 
 ![adding informations](server/public/images/addinfo.png)
+ - * Adding pictures of the user 
+ 
 ![adding pictures](server/public/images/addpicture.png)
+ - * precise the localisation using the map 
+ 
 ![adding localisation](server/public/images/localisation.png)
+ - * editing the profile fields 
+ 
 ![edit profile](server/public/images/editprofile.png)
+ - * browsing and filtring others users 
+ 
 ![browse and filter](server/public/images/brose.png)
+ - * view a profile 
+ 
 ![view profile](server/public/images/view.png)
+ - * like and like back a profile 
+ 
 ![like profile](server/public/images/like.png)
+ - * instant notifications 
+ 
 ![notification](server/public/images/notifications.png)
+ - * Chat 
+ 
 ![chat](server/public/images/chat.png)
 
 
