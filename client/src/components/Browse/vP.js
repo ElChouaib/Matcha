@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles , withStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -27,8 +27,10 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 320,
     maxHeight: 600,
     borderRadius : '20px',
+    border: 'solid',
+    borderColor: 'black',
    
-   backgroundColor: '#E6EAEA'
+   backgroundColor: 'none'
   },
   cardMedia : {
     maxWidth: 320,
@@ -62,6 +64,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const StyledRating = withStyles({
+  iconFilled: {
+    color: '#ff6d75',
+  },
+  iconHover: {
+    color: '#ff3d47',
+  },
+})(Rating);
+
 export default function ViewProfile(props) {
   const {user,images,interests,handleBlock,handleLike,handleReport,handleDislike} = props;
   const classes = useStyles();
@@ -88,12 +99,13 @@ export default function ViewProfile(props) {
       action={ 
         <Box component="fieldset" mb={3} borderColor="transparent">
         <div className={classes.rating1}>
-          <Rating
-            name="read-only"
+        <StyledRating
+        name="read-only"
             value={value}
             precision={0.1}
             readOnly
-          />
+          icon={<FavoriteIcon fontSize="inherit" />}
+        />
         </div>
         </Box>
         }

@@ -19,7 +19,7 @@ export default function (state = DEFAULT_STATE, action) {
         }
         case NEW_NOTIF:
         {
-            let ele = {by: action.data.by, content: action.data.content, seen: 0};
+            let ele = {by: action.data.by, content: action.data.content, seen: 0, type: action.data.type};
             let arr  = [...state.notifications];
             arr.unshift(ele);
             return {current_notif: action.data.content, notifications: arr};

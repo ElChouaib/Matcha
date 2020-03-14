@@ -9,8 +9,7 @@ const filtreUsers = async (user_id,fil,indice) => {
     const filtre = findFilter(fil);
     const user1 = await user.select('GetUserById',user_id);
     const users = await user.getUsers(user_id);
-    if(fil && fil.router === '/browse' || fil === null )
-    {
+    
         for (var i = 0; i < users.length; i++) {
             if(user1[0].sexOrient === 'men')
             {
@@ -29,8 +28,8 @@ const filtreUsers = async (user_id,fil,indice) => {
                 }
             }
         }
-    }
     
+
         if(filtre!== null && filtre.tags !== null)
         {
         for (var i = 0; i < users.length; i++){
@@ -84,9 +83,8 @@ const filtreUsers = async (user_id,fil,indice) => {
        if(filtre!== null && filtre.loc !== null)
        {
         for (var i = 0; i < users.length; i++){
-            users[i].distance = calculateDistance(user1[0],users[i]);
-
-            if( users[i].distance < filtre.loc.min || users[i].distance > filtre.loc.max)
+            users[i].distance = calculateDistance(user1[0],users[i]);     
+            if(users[i].distance > filtre.loc.max ) 
             {
                     users.splice(i, 1);
                     i--;
@@ -126,8 +124,8 @@ const findFilter = (filtre) =>{
         data.rating = {min : filtre.rating[0],max : filtre.rating[1]}
     if(filtre.age[0] !== 18 || filtre.age[1] !== 18)
         data.age = {min : filtre.age[0],max : filtre.age[1]}
-    if(filtre.loc[0] !== 0 || filtre.loc[1] !== 0)
-        data.loc = {min : filtre.loc[0],max : filtre.loc[1]}
+    if(filtre.loc[0] !== 0)
+        data.loc = {max : filtre.loc[0]}
     return data;  
 }
 

@@ -1,41 +1,40 @@
 const user = require('../../models/user');
 
-const rating = async (id) =>{
+const rating = async (id,type) =>{
     let coefficient = 0;
-    const users = await user.select('GetAllUsers')
     const us = await user.select('GetUserById',id);
-    const myRating = us[0].rating;
-        let len = 0;
-    if(users)
-        len = users.length;
-    if(len <= 250)
-    {
-        if(myRating < 3)
+    const user_rating = us[0].rating;
+    if (type=='view'){
+        if(user_rating < 3)
             coefficient = 0.2;
-        else if(myRating < 4 && myRating >= 3)
+        else if(user_rating < 4 && user_rating >= 3)
             coefficient = 0.1;
-        else if(myRating < 5 && myRating >= 4)
+        else if(user_rating < 5 && user_rating >= 4)
             coefficient = 0.05;
     }
-    else if(len > 250 && len <= 750)
+    else if (type== 'like')
     {
-        if(myRating < 3)
-            coefficient = 0.1;
-        else if(myRating < 4 && myRating >= 3)
-            coefficient = 0.05;
-        else if(myRating < 5 && myRating >= 4)
-            coefficient = 0.025;
+        if(user_rating < 3)
+            coefficient = 0.5;
+        else if(user_rating < 4 && user_rating >= 3)
+            coefficient = 0.3;
+        else if(user_rating < 5 && user_rating >= 4)
+            coefficient = 0.15;
     }
-    else
+    else if (type== 'unlike')
     {
-        if(myRating < 3)
-            coefficient = 0.05;
-        else if(myRating < 4 && myRating >= 3)
-            coefficient = 0.025;
-        else if(myRating < 5 && myRating >= 4)
-            coefficient = 0.0125;
-    } 
-        return coefficient;
+        if(user_rating < 3)
+            coefficient = -0.25;
+        else if(user_rating < 4 && user_rating >= 3)
+            coefficient = -0.2;
+        else if(user_rating < 5 && user_rating >= 4)
+            coefficient = -0.15;
+    }
+    else if (type == 'report')
+    {
+        coefficient = -1;
+    }
+    return coefficient;
 }
 
 module.exports = rating

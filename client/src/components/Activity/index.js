@@ -15,6 +15,10 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
 import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
 import BlockIcon from '@material-ui/icons/Block';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import StarsIcon from '@material-ui/icons/Stars';
+
+
 
  const useStyles = makeStyles(theme => ({
    root: {
@@ -24,8 +28,10 @@ import BlockIcon from '@material-ui/icons/Block';
     overflow: 'auto',
     maxHeight: 550,
     borderRadius : '15px',
-    backgroundColor: '#E6EAEA',
-    margin: '10px'
+    backgroundColor: 'none',
+    margin: '10px',
+    border: 'solid',
+    borderColor: 'black',
    },
    large: {
      width: 75,
@@ -43,7 +49,7 @@ import BlockIcon from '@material-ui/icons/Block';
      <Grid container justify="center">
        <List className={classes.root}> 
        <Typography component="h1" variant="h4" align="center" color='primary'>
-            You blocked
+           <BlockIcon/> Blocked list
         </Typography>
        {blockList.isUsers === true && blockList.users.map((value) => ( 
            <ListItem key={value.id} button>
@@ -65,7 +71,7 @@ import BlockIcon from '@material-ui/icons/Block';
      </List>
      <List className={classes.root}> 
      <Typography component="h1" variant="h4" align="center" color='primary'>
-            You like
+     <FavoriteIcon/>Crushs
         </Typography>
        {likeList.isUsers === true && likeList.users.map((value) => ( 
            <ListItem key={value.id} button>
@@ -94,7 +100,7 @@ import BlockIcon from '@material-ui/icons/Block';
      </List>
      <List className={classes.root}> 
      <Typography component="h1" variant="h4" align="center" color='primary'>
-            You're liked by
+            <StarsIcon/>Fans
         </Typography>
        {likedByList.isUsers === true && likedByList.users.map((value) => ( 
            <ListItem key={value.id} button>
@@ -123,7 +129,7 @@ import BlockIcon from '@material-ui/icons/Block';
      </List>
      <List className={classes.root}>
        <Typography component="h1" variant="h4" align="center" color='primary'>
-            Profile views
+            <VisibilityIcon/>views
         </Typography>
        {viewProfileList.isUsers === true && viewProfileList.users.map((value) => (
            <ListItem key={value.id} button>

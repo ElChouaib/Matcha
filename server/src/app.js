@@ -1,12 +1,11 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyparser = require('body-parser');
-const v1 = require('./routes/v1');
-const v2 = require('./routes/v2');
+const OffSession = require('./routes/OffSession');
+const OnSession = require('./routes/OnSession');
 const cors = require('cors')
 const up = require('../src/controllers/uploadFile')
 const app = express();
-
 app.use(express.static('public'));
 // ------------- DB Connection  ------------- //
 const connection = require('./Config/db_connection');
@@ -20,14 +19,13 @@ app.use(cors());
 
 
 // ------------- Routes  ------------- //
-app.use(v2);
+app.use(OffSession);
 app.use(up)
-app.use(v1);
-
+app.use(OnSession);
 // ------------- ERR  ------------- //
 
 app.use((req,res,next) =>{
-    var err = new Error('not found');
+    var err = new Error('Oups Error');
     err.status = 404;
     next(err);
 });

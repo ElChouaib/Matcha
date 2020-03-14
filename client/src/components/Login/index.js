@@ -41,9 +41,7 @@ const Login = (props) => {
   const {handleSubmit, status, errors, registredStatus} = props;
   const classes = useStyles();
 
-  const handleAuth = async () => {
-    window.open("http://localhost:5000/auth/42");
-  }
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -79,7 +77,7 @@ const Login = (props) => {
             />
             </Grid>
             <Grid item xs={12}>
-              <Button  onClick={handleSubmit} className={classes.submit , classes.lock} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
+              <Button  onClick={handleSubmit} className={classes.submit , classes.lock} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Sutbmit</Button>
             </Grid>
           </Grid>
         </form>   
@@ -94,7 +92,6 @@ const Login = (props) => {
                   Don't have an account? Sign Up
               </Link>
             </Grid>
-            <Button onClick={handleAuth}>42</Button>
 
           </Grid>
       </div>

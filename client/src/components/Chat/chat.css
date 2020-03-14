@@ -19,7 +19,7 @@
     height: 100vh;
     min-height: 300px;
     max-height: 82vh;
-    background: #E6EAEA;
+    background: black;
     border-radius: 20px;
   }
   @media screen and (max-width: 360px) {

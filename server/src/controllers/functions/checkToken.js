@@ -4,7 +4,7 @@ const checkToken = async (token) =>{
     try{
         if(token)
         {
-            const us = await jwt.verify(token, 'fuckingSecretKey');
+            const us = await jwt.verify(token, 'MyChouaibKEY');
             const response = await user.select('GetUserById',us.id);
             if(response)
                 return true;

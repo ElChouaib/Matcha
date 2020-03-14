@@ -8,8 +8,9 @@ import {
 } from "../actions/addInfoAction";
 import {EDIT_INFO_ERROR} from "../actions/profileAction";
 import {RESET_STATE} from "../actions/resetStateAction";
+import { UPDATE_USER_SUCCESS } from "../actions/userAction";
 
-const DEFAULT_STATE =  { selectOptions: [], selectLoading: false };
+const DEFAULT_STATE =  { selectOptions: [], selectLoading: false, updateSuccess: null };
 
 export default function (state = DEFAULT_STATE, action) {
   switch (action.type) {
@@ -29,6 +30,8 @@ export default function (state = DEFAULT_STATE, action) {
         return { selectOptions: [...state.selectOptions] , selectLoading: false , error: action.error };
     case RESET_STATE:
       return {selectOptions: [...state.selectOptions] , selectLoading: false};
+    case UPDATE_USER_SUCCESS:
+      return {selectOptions: [...state.selectOptions] , updateSuccess: true , selectLoading: false};
     default:
       return state;
   }

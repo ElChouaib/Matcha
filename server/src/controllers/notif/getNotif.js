@@ -14,7 +14,8 @@ getNotif = async (req, res) => {
                         profilePic: profilePic[0].path,
                     },
                     content:  resp[i].content,
-                    seen: resp[i].seen
+                    seen: resp[i].seen,
+                    type: resp[i].type
                 });
             }
             res.send(arr);

@@ -36,8 +36,8 @@ addInfo = async (req, res) => {
         if(uu) delete uu.password;
         res.send({ added: true , uu});
     }
-    else
-        res.send({ added:false });
+    else{
+        res.send({ added:false });}
 };
 
 module.exports = addInfo;

@@ -77,6 +77,8 @@ editProfile = async (req, res) => {
         });
         const uu = await user.getUser('GetUserById',info.id);
         if(uu){
+            let profilePic = await user.select('GetProfilePic', info.id);
+            uu.profilePic = profilePic[0].path;
             delete uu.verif_token;
             delete uu.password;
         }

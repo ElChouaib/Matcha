@@ -4,16 +4,17 @@ module.exports = {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'sifeddineilyass@gmail.com',
-                pass: 'tgsxcjeduwchxlim'
+                user: 'chouaib7991@gmail.com',
+                pass: 'lgjilqnjjkhawzlz'
             }
         });
         const url = `http://localhost:3000/confirmation/${token}`;
         var mailOptions = {
-            from: 'sifeddineilyass@gmail.com',
+            from: 'chouaib7991@gmail.com',
             to: email,
             subject: 'Confirm your account',
-            html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`
+            html: `<strong>Please click to verify your email</strong><button><a href="${url}">Click me</a></button>
+            <br><br><hr> <p>Created With love By: Elchouai & Mgoulman </p>`
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
@@ -27,16 +28,17 @@ module.exports = {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'sifeddineilyass@gmail.com',
-                pass: 'tgsxcjeduwchxlim'
+                user: 'chouaib7991@gmail.com',
+                pass: 'lgjilqnjjkhawzlz'
             }
         });
         const url = `http://localhost:3000/resetPassword/${token}`;
         var mailOptions = {
-            from: 'sifeddineilyass@gmail.com',
+            from: 'chouaib7991@gmail.com',
             to: email,
             subject: 'Reset your password',
-            html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`
+            html: `<strong >Click in the link below to reset your password</strong><br><button><a href="${url}">Click me</a></button>
+            <br><br><hr> <p>Created With love By: Elchouai & Mgoulman </p>`
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {

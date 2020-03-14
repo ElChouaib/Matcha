@@ -4,6 +4,7 @@ const checkLikes = require('./checkLikes');
 
 likeUser = async (req, res) => {
     const data = req.body;
+    console.log(data);
     const checkLike = await user.select('checkLike',[data.id,data.liked_user_id]);
     const relation = await checkLikes(data.id, data.liked_user_id);
     if(checkLike.length === 0)
@@ -15,12 +16,12 @@ likeUser = async (req, res) => {
         }
         user.insert('likeUser',[data.id, data.liked_user_id])
             .then(async (response) => {
-                const ra = await rating(data.liked_user_id);
+                const ra = await rating(data.liked_user_id,'like');
                 await user.update('updateRating',[ra, data.liked_user_id]);
                 if(relation === 'heLiked')
-                    await user.insert('insertNotif', [data.id, data.liked_user_id, `You are matched with ${data.username}`, 0]);
+                    await user.insert('insertNotif', [data.id, data.liked_user_id, `You are matched with ${data.username}`, 0,'other']);
                 else
-                    await user.insert('insertNotif', [data.id, data.liked_user_id, `${data.username} liked you`, 0]);
+                    await user.insert('insertNotif', [data.id, data.liked_user_id, `${data.username} liked you`, 0,'other']);
                 res.send(true);
             }).catch((error) => {
                 console.log(error);

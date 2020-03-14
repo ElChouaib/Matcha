@@ -15,6 +15,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+
+
 
 
 
@@ -52,6 +58,7 @@ const useStyles = makeStyles(theme => ({
   spacing:{
     margin: theme.spacing(1),
     align: 'center',
+    width: '100px',
   },
   search:{
     margin: theme.spacing(5),
@@ -66,7 +73,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const {selectOptions,handle, users,handleSubmit,handleBlock,handleLike,handleDislike,
+  const {selectOptions, handle,users,handleSubmit,handleBlock,handleLike,handleDislike,
         handleViewProfile,handleChangeAge,handleChangeLoc,handleChangeRating,
         handleChangeTags,handleChangeNbrTags,age,nbrTags,loc,rating} = props;
   
@@ -103,8 +110,6 @@ export default function TitlebarGridList(props) {
   const [anchorAge, setAnchorAge] = useState(null);
   const [anchorLocation, setAnchorLocation] = useState(null);
   const [anchorTags, setAnchorTags] = useState(null);
-  const [scroll, setscroll] = useState(false);
-
   
 
   const handleRate = event => {
@@ -138,7 +143,15 @@ export default function TitlebarGridList(props) {
           <Grid container item justify="center" spacing={2} xs={12}>
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
+              <div>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-rating")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              
               <Button  className={classes.spacing} onClick={handleRate} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Rating</Button>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("rating")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
                 <Menu
                   id="simple-menu"
                   anchorEl={anchorRate}
@@ -158,7 +171,16 @@ export default function TitlebarGridList(props) {
                       max={5}/>
                   </MenuItem>
                 </Menu>
+                </div>
+                <div>
+                <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-age")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              
                 <Button className={classes.spacing}  onClick={handleAge} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Age</Button>
+                <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("age")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
                 <Menu
                   id="simple-menu"
                   anchorEl={anchorAge}
@@ -177,7 +199,16 @@ export default function TitlebarGridList(props) {
                       max={120}/>
                   </MenuItem>
                 </Menu>
+                </div>
+                <div>
+                <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-distance")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              
                 <Button className={classes.spacing}  onClick={handleLocation} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Location</Button>
+                <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("distance")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
                 <Menu
                   id="simple-menu"
                   anchorEl={anchorLocation}
@@ -191,13 +222,22 @@ export default function TitlebarGridList(props) {
                       onChange={handleChangeLoc}
                       valueLabelDisplay="auto"
                       aria-labelledby="range-slider"
-                      step={1000}
+                      step={10}
                       
-                      max={50000}>
+                      max={10000}>
                     </Slider>
                   </MenuItem>
                 </Menu>
+                </div>
+                <div>
+                <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-nbrTags")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              
                 <Button className={classes.spacing}  onClick={handleTags} aria-controls="customized-menu" aria-haspopup="true" variant="contained"color="primary">Tags</Button>
+                <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("nbrTags")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
                 <Menu
                   id="simple-menu"
                   anchorEl={anchorTags}
@@ -218,6 +258,7 @@ export default function TitlebarGridList(props) {
                     </Slider>
                   </MenuItem>
                 </Menu>
+                </div>
             </Grid>
 
             <Grid item xs={6} className={classes.rating}>
@@ -233,18 +274,21 @@ export default function TitlebarGridList(props) {
                   align="center"
               />
             </Grid>
+            
           </Grid>
         </CardContent>
         <CardActions>
         <Button type="submit" onClick={handleSubmit} color="primary" className={classes.submit} fullWidth variant="contained" ><FilterListIcon/>FILTER</Button>
         </CardActions>
       </Card>
+     
     <div className={classes.root}>
+    
     
           {users.isUsers === true && users.users && users.users.map(tile => (
             
             <GridList key={tile.user.id}>
-              <ViewProfile key={tile.user.id}  user={tile.user} images={tile.images} interests={tile.interests}
+                <ViewProfile user={tile.user} images={tile.images} interests={tile.interests}
               handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile} handleDislike={handleDislike}/>
             </GridList>
           ))}

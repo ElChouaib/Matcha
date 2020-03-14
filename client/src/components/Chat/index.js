@@ -58,7 +58,9 @@ const SendMessage = (props) => {
     const handleChange = e => setMessage(e.target.value);
     const handleSubmit = form => {
         form.preventDefault();
-        if (message.length > 255) setMessage("");
+        if (message.length > 255 || message.trim().length === 0){
+            setMessage("");
+        }
         else if (message) {
             handleSendMessage(selected.id, message);
             let cont = document.querySelector('.messages');

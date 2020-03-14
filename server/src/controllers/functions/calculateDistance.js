@@ -17,6 +17,6 @@ const usergetDistance = (user1, user2) => {
           + Math.cos((lat1).toRad()) * Math.cos((lat2).toRad())
           * Math.sin(dlon / 2) * Math.sin(dlon / 2)
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-    return parseInt(earthRadius * c)
+    return parseInt(earthRadius * c )
 }
 module.exports = usergetDistance

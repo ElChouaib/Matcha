@@ -2,7 +2,6 @@ import React , {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import IconButton from '@material-ui/core/IconButton';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -10,6 +9,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import CheckCircleSharpIcon from '@material-ui/icons/CheckCircleSharp';
 import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
 const useStyles = makeStyles(theme => ({
   card: {
    height :150,
@@ -82,7 +82,7 @@ const  Pictures = (props) => {
          <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  onChange={fileChangedHandler}/>
          <label htmlFor="icon-button-file">
           <IconButton color="primary" aria-label="upload picture" component="span">
-            <AddAPhotoIcon  style={{fontSize : 70}} />
+            <AddIcon  style={{fontSize : 70}} />
           </IconButton>
         </label>
         </div>
@@ -100,8 +100,8 @@ const  Pictures = (props) => {
                       className={classes.titleBar}
                       title={tile.isProfilePic === 1 && 'Profile picture'}
                       actionIcon={
-                        <Tooltip title ="set as a profile pic"><IconButton aria-label="profilePic"  onClick={(e) => setProfilePicture(tile.id)}>
-                          <CheckCircleSharpIcon  onClick ={handleChangeColor} className={ tile.isProfilePic === 1 ? classes.ver : classes.non}/>
+                        <Tooltip title ="set as a profile pic"><IconButton aria-label="profilePic"  onClick={(e) => {setProfilePicture(tile.id,tile.path);handleChangeColor()}}>
+                          <CheckCircleSharpIcon  className={ tile.isProfilePic === 1 ? classes.ver : classes.non}/>
                         </IconButton></Tooltip>
                         
                       }

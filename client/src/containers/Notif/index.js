@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {connect} from "react-redux";
 import Notif from '../../components/Notif';
 
 const NotifCont = (props) => {
     const {notifList}  = props;
-    useEffect(() => {
-    }, []);
+    
     return (
         <div>
             <Notif notifList={notifList}/>

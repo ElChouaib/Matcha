@@ -13,6 +13,7 @@ let profileInfoContainer = (props) => {
             selectLoading={props.selectLoading}
             selectOptions={props.selectOptions}
             selectError={props.selectError}
+            updateSuccess={props.updateSuccess}
             createOption={props.createOption}
         />
     )
@@ -81,6 +82,8 @@ const mapStateToProps = (state) => ({
     'selectOptions': state.addInfo.selectOptions,
     'selectLoading': state.addInfo.selectLoading,
     'selectError' : state.addInfo.error,
+    'updateSuccess' : state.addInfo.updateSuccess,
+
 });
 const mapDispatchToProps = {
     "editInfo": editInfo,

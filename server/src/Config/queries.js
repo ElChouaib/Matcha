@@ -7,8 +7,7 @@ const queries = {
                             id NOT IN  (SELECT blocker_id FROM blockList  WHERE blocked_id = ?) AND \
                             id NOT IN  (SELECT reported_id FROM reportList  WHERE reporter_id = ?) \
                             AND confirmed = 1 \
-                            AND complete = 3 \
-                            ORDER BY rating DESC",
+                            AND complete = 3 ",
         GetAllUsers:        "SELECT  DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
                             id,firstname, username, lastname, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude \
                             FROM users WHERE confirmed = 1 AND complete = 3",
@@ -46,7 +45,7 @@ const queries = {
                             WHERE usersInterests.uId = ?",
         CheckEditUsername:  "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail:     "SELECT email from users where email = ? AND id != ?",
-        getNotif:           "SELECT users.id, users.username, content, seen FROM notifications,users \
+        getNotif:           "SELECT users.id, users.username, content, seen, type FROM notifications,users \
                             WHERE notifications.receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC",
     },
     INSERT : {
@@ -59,7 +58,7 @@ const queries = {
         reportUser :        "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
         viewProfileUser :   "INSERT INTO viewProfileList (viewer, viewed, date) VALUES (?,?,NOW())",
         insertMessage:      "INSERT INTO messages (sender, receiver, message) VALUES (?, ?, ?)",
-        insertNotif:        "INSERT INTO notifications (`by`, receiver, content, seen) VALUES (?, ?, ?, ?)",
+        insertNotif:        "INSERT INTO notifications (`by`, receiver, content, seen, type) VALUES (?, ?, ?, ?, ?)",
     },
     UPDATE : {
         Update:             'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',
@@ -78,7 +77,7 @@ const queries = {
         setProfilePic:      'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
         resetProfilePic :   'UPDATE images SET isProfilePic = 0 WHERE user_id = ?',
         setFirstProPic :    'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1',
-        updateRating :      'UPDATE users SET rating = rating  + ?  WHERE id = ? AND rating <= 5',
+        updateRating :      'UPDATE users SET rating = rating  + ?  WHERE id = ? AND rating < 5 AND rating > 0',
         openNotif:          'UPDATE notifications SET seen = 1',
     },
     DELETE : {

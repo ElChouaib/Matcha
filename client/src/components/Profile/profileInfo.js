@@ -43,7 +43,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
   )
 
 const ProfileInfo = (props) => {
-    const {handleSubmit, selectLoading, selectOptions, selectError, createOption} = props;
+    const {handleSubmit, selectLoading, selectOptions, selectError, createOption, updateSuccess} = props;
     const classes = useStyles();
 
     const handleCreate =  (value) => {
@@ -71,6 +71,7 @@ const ProfileInfo = (props) => {
     return (
     <div>
       {selectError && <MyFlash msg={selectError} variant="error"/>}
+      {updateSuccess && <MyFlash msg={['Edit Success']} variant="success"/>}
         <form>
             <Grid container justify="center" spacing={2}>
               <Grid item xs={5}>

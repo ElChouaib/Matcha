@@ -23,8 +23,8 @@ const deletePicture = (imgId,isProfilePic) => {
    }
     delImages(img);
   }
-  const setProfilePicture = (imgId) => {
-    setProfilePic(imgId);
+  const setProfilePicture = (imgId,path) => {
+    setProfilePic(imgId,path);
   }
 
     return (

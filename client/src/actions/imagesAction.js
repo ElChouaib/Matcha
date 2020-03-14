@@ -46,9 +46,9 @@ export const delImagesSuccess= (images) => ({
     "type": DEL_IMAGES_SUCCESS,
     images
 });
-export const setProfilePic= (imgId) => ({
+export const setProfilePic= (imgId,path) => ({
     "type": SET_PROFILE_PIC,
-    imgId
+    imgId,path
 });
 export const setProfilePicSuccess= (images) => ({
     "type": SET_PROFILE_PIC_SUCCESS,

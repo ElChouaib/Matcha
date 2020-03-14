@@ -13,11 +13,8 @@ const isBirthday = (date) => {
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
         age--;
     }
-    if(age < 18)
-        return false
-    if(age > 120)
-        return false
-
+    if(age >= 18 && age <= 120)
+        return true
     return true
 }
 

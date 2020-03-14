@@ -1,5 +1,6 @@
 export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
 export const GET_USERS = "GET_USERS";
+export const SORT_USERS = "SORT_USERS";
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_ERROR = "GET_USERS_ERROR";
 export const BLOCK_USER = "BLOCK_USER";
@@ -16,11 +17,12 @@ export const GET_BLOCK_USER = "GET_BLOCK_USER";
 export const GET_BLOCK_USER_SUCCESS = "GET_BLOCK_USER_SUCCESS";
 export const GET_LIKE_USER = "GET_LIKE_USER";
 export const GET_LIKE_USER_SUCCESS = "GET_LIKE_USER_SUCCESS";
-export const SORT_USERS = "SORT_USERS";
 export const GET_VP_LIST = "GET_VP_LIST";
 export const GET_VP_LIST_SUCCESS = "GET_VP_LIST_SUCCESS";
 export const GET_LIKED_BY = "GET_LIKED_BY";
 export const GET_LIKED_BY_SUCCESS = "GET_LIKED_BY_SUCCESS";
+
+
 
 export const updateUserSuccess = (data) => ({
     "type":  UPDATE_USER_SUCCESS,
@@ -31,6 +33,12 @@ export const getUsers= (filtre,indice) => ({
     "type":  GET_USERS,
     filtre: filtre,
     indice: indice
+});
+export const sortUsers= (methode,filtre,indice) => ({
+    "type":  SORT_USERS,
+    methode,
+    filtre,
+    indice
 });
 export const getUsersSuccess= (data) => ({
     "type":  GET_USERS_SUCCESS,
@@ -96,12 +104,7 @@ export const viewProfileUser= (viewed_user_id) => ({
     "type":  VIEW_PROFILE_USER,
     viewed_user_id
 });
-export const sortUsers= (methode,route,indice) => ({
-    "type":  SORT_USERS,
-    methode,
-    route,
-    indice
-});
+
 export const getViewProfileList= () => ({
     "type":  GET_VP_LIST,
 });

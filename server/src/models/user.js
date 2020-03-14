@@ -34,17 +34,18 @@ module.exports = {
                     reject(err);
                 else
                 {
-                    const data = JSON.parse(JSON.stringify(res));
-                    if(data[0])
+                    const data = JSON.parse(JSON.stringify(res))[0];
+                    
+                    if(data)
                     {
-                       this.getUserInterests(data[0].id)
+                       this.getUserInterests(data.id)
                         .then(async (response) => {
                             interests  = response;
-                            data[0].birthday = data[0].transDate;
-                            data[0].interests = interests;
-                            let token = await jwt.sign(data[0], 'fuckingSecretKey');
-                            data[0].token = token;
-                            resolve(data[0]);
+                            data.birthday = data.transDate;
+                            data.interests = interests;
+                            let token = await jwt.sign(data, 'MyChouaibKEY');
+                            data.token = token;
+                            resolve(data);
                         }).catch((error)  => {console.log(error)})
                     }else
                     {

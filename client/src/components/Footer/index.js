@@ -26,7 +26,7 @@ const Copyright = () => {
         <Typography variant="body2" color="textSecondary" align="center">
           {'Copyright © '}
           <Hink color="inherit" href="#">
-            MATCHA
+            Elchouai&Mgoulman
           </Hink>{' '}
           {new Date().getFullYear()}
           {'.'}

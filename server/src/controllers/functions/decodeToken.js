@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 decodeToken = async (req, res) => {
     const token = req.body.token;
     try {
-        let decoded =  await jwt.verify(token, 'fuckingSecretKey');
+        let decoded =  await jwt.verify(token, 'MyChouaibKEY');
         if(decoded)
             res.send(decoded.data);
         else

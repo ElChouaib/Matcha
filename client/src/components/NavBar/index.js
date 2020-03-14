@@ -93,10 +93,9 @@ function NavBar(props) {
 
   const loggedInMenu = [
     {"text" : "Browse","path" : "/browse", icon: <AppsIcon color="secondary"/>},
-    {"text" : "Search","path" : "/search", icon: <SearchIcon color="secondary"/>},
     {"text" : "Profile","path" : "/profile", icon: <PersonIcon color="secondary"/>},
-    {"text" : "Activity","path" : "/activity", icon: <HistoryIcon color="secondary"/>},
-    {"text" : "Friends","path" : "/chat", icon: <ChatIcon color="secondary"/>},
+    {"text" : "History","path" : "/activity", icon: <HistoryIcon color="secondary"/>},
+    {"text" : "Chat","path" : "/chat", icon: <ChatIcon color="secondary"/>},
   ];
   const completeProfile = [
     {"text" : "Complete Profile", "path" : "/completeProfile", icon: <PersonIcon color="secondary"/>},
@@ -191,8 +190,8 @@ function NavBar(props) {
       >
         <div className={classes.drawerHeader}>
           
-        {user && <Grid> <Avatar className={classes.large} alt='Avatar' src={`http://localhost:5000/images/${user.profilePic}`}/>
-               <Button href="/profile">{user.username}</Button> </Grid>}
+        {user && <Link to="/profile" style={{textDecoration: 'none'}}><Grid> <Avatar className={classes.large} alt='Avatar' src={`http://localhost:5000/images/${user.profilePic}`}/>
+               {user.username}</Grid></Link>}
 
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon color="primary"/> : <ChevronRightIcon />}

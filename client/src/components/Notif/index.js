@@ -7,6 +7,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import { Grid} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
+
 
 const useStyles = makeStyles(theme => ({
    root: {
@@ -41,7 +43,8 @@ export default function Notif(props) {
                             src={`http://localhost:5000/images/${value.by.profilePic}`}
                         />
                     </ListItemAvatar>
-                    <ListItemText>{value.content}</ListItemText>
+                    
+                    <Link to={value.type=="msg" ? "/chat" : "/activity"} style={{textDecoration: 'none', color:'#B25374'}}><ListItemText >{value.content}</ListItemText></Link>
                 </ListItem>
             )) : <p>No notifications</p>}
         </List>

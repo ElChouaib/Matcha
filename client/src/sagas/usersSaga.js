@@ -16,6 +16,7 @@ export const getUsers =
             },token);
             if(response)
             {
+                
                 var oldUsers = yield select ((state) => state.users.users)
                 var newUsers = response.data;
                 var us = null;
@@ -31,14 +32,14 @@ export const getUsers =
             yield put(getUsersError('there has been an error1'));
         }
     };
-export const sortUsers =
-    function *sortUsers ({methode,route,indice}) {
+    export const sortUsers =
+    function *sortUsers ({methode,filtre,indice}) {
         try {
             const user = yield select(state => state.user);
             const token = yield select((state) => state.user.token);
             const response = yield call(request, {
             "url": "http://localhost:5000/sortUsers",
-            "data": {id : user.id,methode : methode,route : route,indice : indice},
+            "data": {id : user.id,methode : methode, filtre: filtre, indice : indice},
             "method": "post"
             },token);
             if(response)
@@ -251,7 +252,7 @@ export default function *() {
     yield takeLatest("GET_LIKE_USER",getLikeUser);
     yield takeLatest("REPORT_USER",reportUser);
     yield takeLatest("VIEW_PROFILE_USER",viewProfileUser);
-    yield takeLatest("SORT_USERS",sortUsers);
     yield takeLatest("GET_VP_LIST",getViewProfileList);
+    yield takeLatest("SORT_USERS",sortUsers);
     yield takeLatest("GET_LIKED_BY", getLikedBy);
 }

@@ -1,4 +1,5 @@
 const isEmpty = require("./empty/isEmpty")
+const isCorrupt = require("./empty/isCorrupt")
 const isDigit = require("./string/isDigit")
 const isLowercase = require("./string/isLowercase")
 const isUppercase = require("./string/isUppercase")
@@ -27,5 +28,6 @@ module.exports = {
     isEmpty, isDigit, isLowercase, isUppercase, isSpecial,
     isAlpha, isAlphaNumeric, isNumeric, isFloat, isUsername,
     isEmail, isBirthday, isFirstname, isLastname, isPassword,
-    isProfileComplete, isGender, isOrient, isBio, isInterest, isLatitude, isLongitude, age
+    isProfileComplete, isGender, isOrient, isBio, isInterest,
+     isLatitude, isLongitude, age,isCorrupt
 };
