@@ -55,6 +55,16 @@ You must have phpmyadmin launched
 
     brew install npm
 
+![login](server/public/images/login.png)
+![adding informations](server/public/images/addinfo.png)
+![adding pictures](server/public/images/addpicture.png)
+![adding localisation](server/public/images/localisation.png)
+![edit profile](server/public/images/editprofile.png)
+![browse and filter](server/public/images/brose.png)
+![view profile](server/public/images/view.png)
+![like profile](server/public/images/like.png)
+![notification](server/public/images/notifications.png)
+![chat](server/public/images/chat.png)
 
 
 <hr>
