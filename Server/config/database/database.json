@@ -1,8 +1,0 @@
-{
-    "dev": {
-        "host": "localhost",
-        "driver": "mysql",
-        "user": "root",
-        "password": "5Comrzyh@@@"
-    }
-}
