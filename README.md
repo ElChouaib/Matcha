@@ -54,6 +54,8 @@ You must have phpmyadmin launched
 > # You Don't have npm ?
 
     brew install npm
+    
+> # Screenshots
 
 ![login](server/public/images/login.png)
 ![adding informations](server/public/images/addinfo.png)
